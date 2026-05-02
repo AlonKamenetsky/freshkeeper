@@ -1,0 +1,168 @@
+{
+  "info": {
+    "name": "FreshKeeper API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "GET all users",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/users"
+          }
+        },
+        {
+          "name": "GET user by ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/users/1"
+          }
+        },
+        {
+          "name": "GET user not found",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/users/999"
+          }
+        },
+        {
+          "name": "POST create user",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3000/users",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Yoni\",\n  \"lastName\": \"Bar\",\n  \"userRole\": \"user\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST create user - validation error",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3000/users",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Yoni\"\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT update user (manager)",
+          "request": {
+            "method": "PUT",
+            "url": "http://localhost:3000/users/2",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-role", "value": "manager" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Ben\",\n  \"lastName\": \"Levi\",\n  \"userRole\": \"manager\"\n}"
+            }
+          }
+        },
+        {
+          "name": "DELETE user (admin)",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3000/users/3",
+            "header": [{ "key": "x-user-role", "value": "admin" }]
+          }
+        },
+        {
+          "name": "DELETE user - forbidden",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3000/users/3"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Items",
+      "item": [
+        {
+          "name": "GET all items",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/items"
+          }
+        },
+        {
+          "name": "GET item by ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/items/1"
+          }
+        },
+        {
+          "name": "GET item not found",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/items/999"
+          }
+        },
+        {
+          "name": "POST create item",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3000/items",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Yogurt\",\n  \"quantity\": 3,\n  \"expirationDate\": \"2026-05-10\",\n  \"storageType\": \"fridge\",\n  \"userId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "POST create item - validation error",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3000/items",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Yogurt\"\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT update item (manager)",
+          "request": {
+            "method": "PUT",
+            "url": "http://localhost:3000/items/1",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-role", "value": "manager" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Milk\",\n  \"quantity\": 4,\n  \"expirationDate\": \"2026-05-10\",\n  \"storageType\": \"fridge\",\n  \"userId\": 3\n}"
+            }
+          }
+        },
+        {
+          "name": "DELETE item (admin)",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3000/items/2",
+            "header": [{ "key": "x-user-role", "value": "admin" }]
+          }
+        },
+        {
+          "name": "DELETE item - forbidden",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3000/items/2"
+          }
+        }
+      ]
+    }
+  ]
+}
